@@ -31,6 +31,16 @@ var triviaGame = {
 				this.incorrectAnswer--;
 				this.unansweredQuestions--;
 			}
+			for (var prop in this.userGuesses) {
+       			console.log("Answer for question " + prop + " is " + this.userGuesses[prop]);
+       			if (this.userGuesses[prop] === "correct") {
+				   this.correctAnswer++;
+				} 
+				else if (this.userGuesses[prop] === "wrong") {
+				   this.incorrectAnswer++;
+				}
+				var unansweredResult = 
+			}
 				
 		}
 
