@@ -1,0 +1,14 @@
+.hidden{
+    display:none;
+}
+
+
+.triviaAnswers li { 
+list-style: upper-alpha; 
+} 
+
+label { 
+margin-left: 0.5em; 
+cursor: pointer; 
+} 
+
