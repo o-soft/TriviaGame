@@ -65,9 +65,9 @@ var timer = {
 	flags: 0,
 
 	commence: function() {
-	if (timer.flag === 0) {
+	if (timer.flags === 0) {
 		intervalId = setInterval(timer.count, 1000);
-		timer.flag++;
+		timer.flags++;
 	};
 
   },
@@ -78,13 +78,13 @@ var timer = {
   	},
 
   	count: function() {
-  		if (timer.countDown > 0) {
-  			timer.countDown--;
-  			var time = timer.timeConverter(timer.countDown);
-  			$('gameHeader').html("Time: " + time + " seconds");
-  		}
-  		else { timer.stop(); };
-  	},
+         if (timer.countDown > 0) {
+             timer.countDown--;
+             var time = timer.timeConverter(timer.countDown);
+             $('.gameHeader').html("Time: " + time + " seconds");
+         }
+         else { timer.stop(); };
+     },
 
   	timeConverter: function(t) {
 
@@ -122,7 +122,7 @@ $(document).ready(function() {
 });
 
 
-$('#startButton').on('click', function() {
+$('.startButton').on('click', function() {
 	triviaGame.displayGame();
 });
 
