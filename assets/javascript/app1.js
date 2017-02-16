@@ -10,9 +10,9 @@ var triviaGame = {
 		
 		
 		//start button disppear
-		$('.startButton').removeClass('hidden');
+		$('#startButton').addClass('hidden');
 		//timer starts
-		$('.questions').addClass('hidden');
+		$('#questions').removeClass('hidden');
 		//timer = shown
 		//question shown
 		timer.commence(); 
@@ -34,7 +34,7 @@ var triviaGame = {
 		}
 
 	$('.gameHeader').html("End"); //Display GAME OVER text
-	$('.questions').addClass('hidden');	//hide the questions
+	$('#questions').addClass('hidden');	//hide the questions
 	$('.scoreboard').removeClass('hidden');	//show the reset div
 	$('.unanswered').html("Unanswered Questions: " + this.unanswered); //display the no. of unanswered 
 	$('.correct').html("Correct: " + this.correct);	//display the no. of correct 
@@ -67,7 +67,7 @@ var timer = {
 	commence: function() {
 	if (timer.flag === 0) {
 		intervalId = setInterval(timer.count, 1000);
-
+		timer.flag++;
 	};
 
   },
@@ -76,6 +76,7 @@ var timer = {
   		clearInterval(intervalId);
   		triviaGame.results();
   	},
+
   	count: function() {
   		if (timer.countDown > 0) {
   			timer.countDown--;
@@ -112,24 +113,24 @@ var timer = {
 
 //EVENTS
 //when the document loads...
-$( document ).ready(function() {
+$(document).ready(function() {
 	//HIDE QUESTIONS, TIMER, RESULTS BOX, RESTART BUTTON
 	$('.gameHeader').html("Commence"); //MAKE SURE YOU CREATE CLASS in CSS for 'hidden'
-	$('.questions').addClass('hidden');//MAKE SURE YOU CREATE CLASS in CSS for 'hidden'
+	$('#questions').addClass('hidden');//MAKE SURE YOU CREATE CLASS in CSS for 'hidden'
 	$('.scoreboard').addClass('hidden'); //MAKE SURE YOU CREATE CLASS in CSS for 'hidden'
 
 });
 
 
-$('.startButton').on('click', function() {
-	triviaGame.commence();
+$('#startButton').on('click', function() {
+	triviaGame.displayGame();
 });
 
 function QuestionClick(x, y,z){
    this.y = y;
    this.x = x;
    console.log(x);
-   console.log(y)
+   console.log(y);
    $('input[name="'+x+'"]').on('click', function(){
        var answer = $('input[name="'+x+'"]:checked').val();
            triviaGame.userGuesses[z] = answer;
