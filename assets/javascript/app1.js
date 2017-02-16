@@ -20,7 +20,7 @@ var triviaGame = {
 		//show the Questions & Timer (hint: remove the "hidden" class)
 	},
 	results: function() {
-		for (var = 0, i < triviaGame.userGuesses, i++){
+		for (var i = 0; i < this.userGuesses.length; i++){
 			if (this.userGuesses[i] === this.answers[i]) {
 				this.correctAnswer++;
 				this.unansweredQuestions--;
@@ -81,7 +81,7 @@ var timer = {
   			timer.countDown--;
   			var time = timer.timeConverter(timer.countDown);
   			$('gameHeader').html("Time: " + time + " seconds");
-  		};
+  		}
   		else { timer.stop(); };
   	},
 
@@ -112,7 +112,7 @@ var timer = {
 
 //EVENTS
 //when the document loads...
-$( document ).ready(function) {
+$( document ).ready(function() {
 	//HIDE QUESTIONS, TIMER, RESULTS BOX, RESTART BUTTON
 	$('.gameHeader').html("Commence"); //MAKE SURE YOU CREATE CLASS in CSS for 'hidden'
 	$('.questions').addClass('hidden');//MAKE SURE YOU CREATE CLASS in CSS for 'hidden'
