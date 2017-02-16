@@ -3,8 +3,9 @@ var triviaGame = {
 	incorrectAnswer: 0,
 	unansweredQuestions: 0,
 	answers: ['Blue', 'Yellow', 'Black', 'White'],
-	userGuesses: [],
+	userGuesses: {},
 	
+
 	displayGame: function() {
 //when game starts - start button appears, timer is shown, timer starts, and questions are shown
 		
@@ -108,8 +109,9 @@ var timer = {
   },
 
 
-
 };
+
+
 
 //EVENTS
 //when the document loads...
@@ -136,8 +138,28 @@ function QuestionClick(x, y,z){
            triviaGame.userGuesses[z] = answer;
 	});
 }
+$(".radioBtn").on("click", function() {
+   triviaGame.userGuesses[$(this).attr("name")] = $(this).val();
+   console.log(triviaGame.userGuesses);
+});
+// $(".radioBtn").on("click", function() {
+//  consol("Name: " + $(this).attr("name"));
+//  console.log("Value: " + $(this).val());
+// });
 
-	QuestionClick('q1', 'q1r' ,0);
-	QuestionClick('q2', 'q2r' , 1);
-	QuestionClick('q3', 'q3r', 2);
-	QuestionClick('q4', 'q4r', 3);
+// $(".radioBtn").on("click", function() {
+// 	if (userGuesses === triviaGame.answers[i]) {
+// 		$(".radioBtn.name").html(".correct");
+//  		$(".radioBtn.value").html(".correct");
+// 	}
+// 	else (userGuesses !== triviaGame.answers[i]) {
+// 		$(".radioBtn.name").html(".incorrect");
+//  		$(".radioBtn.value").html(".incorrect");
+// 	}
+
+// };
+
+	// QuestionClick('q1', 'q1r' ,0);
+	// QuestionClick('q2', 'q2r' , 1);
+	// QuestionClick('q3', 'q3r', 2);
+	// QuestionClick('q4', 'q4r', 3);
