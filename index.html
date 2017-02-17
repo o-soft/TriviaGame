@@ -1,114 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="widli=device-widli, initial-scale=1">
-    <title>Trivia Game</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-     
-  </head>
-  <body>
-    <section class='main'>
-      <h1 class="gameHeader" class="col">
-          TRIVIA GAME
-      </h1>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <title>TRIVIA GAME</title>
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+<body>
 
-      <div id="startBtn" class="col col-xs-12">
-         <!-- start button -->
-        <button class = "startButton">
-          Start
-        </button>
-
-      </div>
+<header class="jumbotron">
+  <h1 class="jumboH1">TRIVIA GAME<br></h1>
+</header>
 
 
-      <!-- timer -->
-      <div>
-        <h2 class="timer"> 
-        </h2>
-      </div>
+<div class="container">
+  <h1 id="triviaTitle" class="col"></h1>
+  <div class="col col-xs-12">
+    <button id="start" class="col col-12-xs btn btn-block btn-lg btn-success">START</button>
+  </div>
+  <div class="questions">
+  <h2 class="col col-12-xs"><u>Trivia Questions</u></h2>
 
+  <p class="question question1">1. Mary had a little...?</p>        
+  <ul class="answers a1">            
+    <input type="radio" name="q1" value="wrong" id="q1 q1a"><label for="q1a">Food</label><br/>
+    <input type="radio" name="q1" value="wrong" id="q1 q1b"><label for="q1b">Sky</label><br/>
+    <input type="radio" name="q1" value="c" id="q1 q1c"><label for="q1c">Lamb</label><br/>
+    <input type="radio" name="q1" value="wrong" id="q1 q1d"><label for="q1d">Taco</label><br/>
+  </ul>  
+  <p class="question question2">2. Straight out of"?</p>        
+  <ul class="answers a2">            
+    <input type="radio" name="q2" value="wrong" id="q2 q2a"><label for="q2a">Harvard</label><br/>
+    <input type="radio" name="q2" value="wrong" id="q2 q2b"><label for="q2b">School of Hard Knocks</label><br/>
+    <input type="radio" name="q2" value="c" id="q2 q2c"><label for="q2c">Compton</label><br/>
+    <input type="radio" name="q2" value="wrong" id="q2 q2d"><label for="q2d">Princeton</label><br/>
+  </ul> 
+  <p class="question question3"> The Earth is ...?</p>        
+  <ul class="answers a3">            
+    <input type="radio" name="q3" value="wrong" id="q3 q3a"><label for="q3a">Flat</label><br/>
+    <input type="radio" name="q3" value="wrong" id="q3 q3b"><label for="q3b">...</label><br/>
+    <input type="radio" name="q3" value="c" id="q3 q3c"><label for="q3c">Round</label><br/>
+    <input type="radio" name="q3" value="wrong" id="q3 q3d"><label for="q3d">Inception</label><br/>
+  </ul> 
 
+  <p class="question question4">4. Suh...?</p>        
+  <ul class="answers a4">            
+    <input type="radio" name="q4" value="wrong" id="q4 q4a"><label for="q4a">Man</label><br/>
+    <input type="radio" name="q4" value="wrong" id="q4 q4b"><label for="q4b">Bro</label><br/>
+    <input type="radio" name="q4" value="c" id="q4 q4c"><label for="q4c">Dude</label><br/>
+    <input type="radio" name="q4" value="wrong" id="q4 q4d"><label for="q4d">Sis</label><br/>
+  </ul> 
 
-      <!-- Questions -->
-      <div class="col col-12-xs" id='questions'>
+  </div>
 
-        <div class="q1" >
-          <p id="pq1">
-            What color is the sky?
-          </p>
-          <ul class="triviaAnswers"> 
-            <input class="radioBtn" type="radio" name="q1" value="wrong"><label for="q1a">A</label><br/>
-            <input class="radioBtn" type="radio" name="q1" value="wrong"><label for="q1b">B</label><br/>
-            <input class="radioBtn" type="radio" name="q1" value="correct"><label for="q1c">Blue</label><br/>
-            <input class="radioBtn" type="radio" name="q1" value="wrong"><label for="q1d">D</label><br/>
-          </ul>
-        </div>
-
-
-         <div class="q2">
-          <p id="pq2">
-            What color is the sun?
-          </p>
-          <ul class="triviaAnswers">  
-            <input class="radioBtn" type="radio" name="q2" value="wrong"><label for="q2a">A</label><br/>
-            <input class="radioBtn" type="radio" name="q2" value="correct"><label for="q2b">Yellow</label><br/>
-            <input class="radioBtn" type="radio" name="q2" value="wrong"><label for="q2c">C</label><br/>
-            <input class="radioBtn" type="radio" name="q2" value="wrong"><label for="q2d">D</label><br/>
-          </ul>
-        </div>
-
-
-         <div class="q3">
-          <p id="pq3">
-            What color is a crow?
-          </p>
-          <ul class="triviaAnswers"> 
-            <input class="radioBtn" type="radio" name="q3" value="correct"><label for="q3a">Black</label><br/>
-            <input class="radioBtn" type="radio" name="q3" value="wrong"><label for="q3b">B</label><br/>
-            <input class="radioBtn" type="radio" name="q3" value="wrong"><label for="q3c">C</label><br/>
-            <input class="radioBtn" type="radio" name="q3" value="wrong"><label for="q3d">D</label><br/>
-            </ul>
-        </div>
-
-
-        <div class="q4" >
-          <p id="pq4">
-            What color is vanilla ?
-          </p>
-          <ul class="triviaAnswers">  
-            <input class="radioBtn" type="radio" name="q4" value="wrong"><label for="q3a">Black</label><br/>
-            <input class="radioBtn" type="radio" name="q4" value="wrong"><label for="q3b">B</label><br/>
-            <input class="radioBtn" type="radio" name="q4" value="wrong"><label for="q4c">C</label><br/>
-            <input class="radioBtn" type="radio" name="q4" value="correct"><label for="q4d">White</label><br/>
-          </ul>
-        </div>
-      </div>
-        <!-- scoreboard - correct, incorrect, and unanswered -->
-      <div class="scoreboard">
-        <h2 class="results"><u>Results</u></h2>
-        <p class="correct"></p>
-        <p class="incorrect"></p>
-        <p class="unanswered"></p>
-        <button class="restart"></button> 
-      </div>
-      
-
-    </section>
-    <!-- Container -->
-
-
-    <!-- Footer --> 
-  <footer class="footer">
-      <div class="container">
-        <p class="text-muted text-center">&copy; Copyright 2016 Oscar Luna</p>
-      </div>
-    </footer>
+  <div id="scoreboard">
+    <h3 id="unansweredQuestions"></h3>
+    <h3 id="correct"></h3>
+    <h3 id="incorrect"></h3>
+    <h4 class="restart">Hit (Command + R) to play again)<br><button id="restartBtn" class="btn btn-lg btn-block btn-danger">REFRESH</button></h4>
+  </div>
+</div>
 
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
     <script type="text/javascript" src="assets/javascript/app1.js"></script>
 
-  </body>
+</body>
 </html>

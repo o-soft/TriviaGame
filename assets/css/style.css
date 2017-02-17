@@ -2,13 +2,46 @@
     display:none;
 }
 
+.grande {
+	font-size: 100px;
+}
 
-.triviaAnswers li { 
+.answers li { 
 list-style: upper-alpha; 
 } 
 
 label { 
-margin-left: 0.5em; 
+margin-left: 0.7em; 
 cursor: pointer; 
 } 
 
+.jumboH1 {
+	text-align: center;
+	background-color: orange;
+}
+
+#triviaTitle {
+	text-align: center;
+	padding: 25px 0px;
+}
+
+#start {
+	padding: 20px;
+	margin-top: 60px;
+	background-color: orange;
+}
+
+#scoreboard {
+	text-align: center;
+	background-color: orange;
+
+}
+
+#startoverBtn {
+	padding: 25px;
+	margin-top: 20px;
+}
+
+.restart {
+	margin: 20px;
+}

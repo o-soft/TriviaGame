@@ -1,140 +1,104 @@
 var triviaGame = {
-	correctAnswer: 0,
-	incorrectAnswer: 0,
-	unansweredQuestions: 0,
-	answers: ['Blue', 'Yellow', 'Black', 'White'],
-	userGuesses: {},
-	
+	unanswered: 4,
+	correct: 0,
+	wrong: 0,
+	answers: ["c","c","c","c"],
 
-	displayGame: function() {
-//when game starts - start button appears, timer is shown, timer starts, and questions are shown
-		
-		
-		//start button disppear
-		$('#startButton').addClass('hidden');
-		//timer starts
-		$('#questions').removeClass('hidden');
-		//timer = shown
-		//question shown
-		timer.commence(); 
+	userResponses: [],
 
-		//show the Questions & Timer (hint: remove the "hidden" class)
+    displayGame: function() {
+		$('#start').addClass('hidden');
+		$('#triviaTitle').html("Ready...");
+		setTimeout(triviaGame.set,1000);
+		setTimeout(triviaGame.go,2000);
+		setTimeout(timer.start,2800);
+
+    },
+
+    set: function() {
+    	$('#triviaTitle').html("Get Set");
+    },
+
+    go: function () {
+    	$('#triviaTitle').html("GO!").addClass('grande');
+    },
+
+	result: function() {
+		for (var i = 0; i < this.userResponses.length; i++) {
+			if (this.userResponses[i] === this.answers[i]) {
+				this.correct++;
+				this.unanswered--;
+			}
+			if (this.userResponses[i] !== this.answers[i]) {
+				this.wrong++;
+				this.unanswered--;
+			}
+		};
+
+		$('#triviaTitle').html("GAME OVER").addClass('grande'); //Display GAME OVER text
+		$('.questions').addClass('hidden');	//hide the questions
+		$('#scoreboard').removeClass('hidden');	//show the reset div
+		$('#unansweredQuestions').html("Unanswered Questions: " + this.unanswered); //display the no. of unanswered 
+		$('#correct').html("Correct: " + this.correct);	//display the no. of correct 
+		$('#incorrect').html("Wrong: " + this.wrong);	//display the no. of wrong 
+
 	},
-	results: function() {
-		for (var i = 0; i < this.userGuesses.length; i++){
-			if (this.userGuesses[i] === this.answers[i]) {
-				this.correctAnswer++;
-				this.unansweredQuestions--;
-			}
-				
-			if (this.userGuesses[i] !== this.answers[i]) {
-				this.incorrectAnswer--;
-				this.unansweredQuestions--;
-			}
-			for (var prop in this.userGuesses) {
-       			console.log("Answer for question " + prop + " is " + this.userGuesses[prop]);
-       			if (this.userGuesses[prop] === "correct") {
-				   this.correctAnswer++;
-				} 
-				else if (this.userGuesses[prop] === "wrong") {
-				   this.incorrectAnswer++;
-				}
-				var unansweredResult = 
-			}
-				
-		}
 
-	$('.gameHeader').html("End"); //Display GAME OVER text
-	$('#questions').addClass('hidden');	//hide the questions
-	$('.scoreboard').removeClass('hidden');	//show the reset div
-	$('.unanswered').html("Unanswered Questions: " + this.unanswered); //display the no. of unanswered 
-	$('.correct').html("Correct: " + this.correct);	//display the no. of correct 
-	$('.incorrect').html("Incorrect Answers: " + this.wrong);	//display the no. of wrong 
-
-},
 
 };
-//IF TIMER INSIDE OF GAME OBJECT, I NEED FUNCTIONS FOR START, COUNT, TIMECONVERT, STOP WITHIN THE GAME OBJECT AS WELL
-//those timer functions would need to be called properly in order for it to work
 
-
-//questions have radio buttons
-//questions display 
-// click on answers
-//selected answer can switch
-	
-//when timer = 0 
-	// questions disppear
-	//.hidden class is reapplied to questions
-	//scoreboard is shown - unanswered, correct, wrong
-	//total correct and answered questions are displayed
-	//restart button appears
-
-	
 var timer = {
-	countDown: 10,
-	flags: 0,
+	time: 10,
 
-	commence: function() {
-	if (timer.flags === 0) {
+
+	start: function() {
+		$('.questions').removeClass('hidden');
+		$('#triviaTitle').html("Time Remaining: " + timer.timeConverter(timer.time) + " seconds!").removeClass('grande');
 		intervalId = setInterval(timer.count, 1000);
-		timer.flags++;
-	};
-
-  },
-  // Stop 
-  	stop: function() {
-  		clearInterval(intervalId);
-  		triviaGame.results();
+      	console.log(timer.time)
   	},
 
-  	count: function() {
-         if (timer.countDown > 0) {
-             timer.countDown--;
-             var time = timer.timeConverter(timer.countDown);
-             $('.gameHeader').html("Time: " + time + " seconds");
-         }
-         else { timer.stop(); };
-     },
+	stop: function() {
+		clearInterval(intervalId);
+		triviaGame.result();
+	},
 
-  	timeConverter: function(t) {
-
-    //  Takes the current time in seconds and convert it to minutes and seconds (mm:ss).
-	    var minutes = Math.floor(t / 60);
-	    var seconds = t - (minutes * 60);
-
-	    if (seconds < 10) {
-	      seconds = "0" + seconds;
-	    }
-
-	    if (minutes === 0) {
-	      minutes = "00";
-	    }
-
-	    else if (minutes < 10) {
-	      minutes = "0" + minutes;
-	    }
-
-	    return minutes + ":" + seconds;
+  count: function() {
+  	if (timer.time > 0) {
+		timer.time--;
+		var currentTime = timer.timeConverter(timer.time);
+		$('#triviaTitle').html("Time Remaining: " + currentTime + " seconds!");
+	}
+	else { 
+		timer.stop(); 
+	};
   },
 
-
+  timeConverter: function(t) {
+    var minutes = Math.floor(t / 60);
+    var seconds = t - (minutes * 60);
+    if (seconds < 10) {
+      seconds = "0" + seconds;
+    }
+    if (minutes === 0) {
+      minutes = "00";
+    }
+    else if (minutes < 10) {
+      minutes = "0" + minutes;
+    }
+    return minutes + ":" + seconds;
+  },
 };
 
-
-
 //EVENTS
-//when the document loads...
-$(document).ready(function() {
-	//HIDE QUESTIONS, TIMER, RESULTS BOX, RESTART BUTTON
-	$('.gameHeader').html("Commence"); //MAKE SURE YOU CREATE CLASS in CSS for 'hidden'
-	$('#questions').addClass('hidden');//MAKE SURE YOU CREATE CLASS in CSS for 'hidden'
-	$('.scoreboard').addClass('hidden'); //MAKE SURE YOU CREATE CLASS in CSS for 'hidden'
+$(document).ready(function() { 
+	$('#triviaTitle').html("Start Game");
+	$('.questions').addClass('hidden');
+	$('#scoreboard').addClass('hidden');
 
 });
 
-
-$('.startButton').on('click', function() {
+$('#start').on('click', function() {
 	triviaGame.displayGame();
 });
 
@@ -142,34 +106,13 @@ function QuestionClick(x, y,z){
    this.y = y;
    this.x = x;
    console.log(x);
-   console.log(y);
+   console.log(y)
    $('input[name="'+x+'"]').on('click', function(){
        var answer = $('input[name="'+x+'"]:checked').val();
-           triviaGame.userGuesses[z] = answer;
+           triviaGame.userResponses[z] = answer;
 	});
-}
-$(".radioBtn").on("click", function() {
-   triviaGame.userGuesses[$(this).attr("name")] = $(this).val();
-   console.log(triviaGame.userGuesses);
-});
-// $(".radioBtn").on("click", function() {
-//  consol("Name: " + $(this).attr("name"));
-//  console.log("Value: " + $(this).val());
-// });
-
-// $(".radioBtn").on("click", function() {
-// 	if (userGuesses === triviaGame.answers[i]) {
-// 		$(".radioBtn.name").html(".correct");
-//  		$(".radioBtn.value").html(".correct");
-// 	}
-// 	else (userGuesses !== triviaGame.answers[i]) {
-// 		$(".radioBtn.name").html(".incorrect");
-//  		$(".radioBtn.value").html(".incorrect");
-// 	}
-
-// };
-
-	// QuestionClick('q1', 'q1r' ,0);
-	// QuestionClick('q2', 'q2r' , 1);
-	// QuestionClick('q3', 'q3r', 2);
-	// QuestionClick('q4', 'q4r', 3);
+};
+QuestionClick('q1', 'q1r' ,0);
+QuestionClick('q2', 'q2r' , 1);
+QuestionClick('q3', 'q3r', 2);
+QuestionClick('q4', 'q4r', 3);
